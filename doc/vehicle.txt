@@ -1,0 +1,9 @@
+Vehicle parts
+  - Wheel
+  - Axis
+  - Front indicator
+  - Body
+    - Circle
+    - Square
+  - Sensors
+  - Motors

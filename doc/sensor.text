@@ -1,0 +1,11 @@
+Point_sensor
+  - A single point that can detect whether it is on or off of a surface.
+  - Sensor triggers an event when it goes on or off.
+  - Sensor can be interrogated as to whether it is on or off the surface.
+
+Sensor_array
+  - An array of single_point sensors arranged in a particular geometry.
+
+Indicator_light
+  - Tied to a sensor 
+

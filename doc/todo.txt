@@ -1,0 +1,11 @@
+ x draw something on a canvas.
+   x add a canvas with to the page
+   x add a circle
+   
+
+
+   
+   
+INTERESTING STUFF
+  clearRect
+  getImageData
