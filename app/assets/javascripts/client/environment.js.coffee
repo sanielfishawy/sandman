@@ -1,6 +1,6 @@
 class window.Conversion
   
-  @px_per_inch = 10
+  @px_per_inch = 50
   
 
 Number.prototype.to_px = -> Math.round @*Conversion.px_per_inch

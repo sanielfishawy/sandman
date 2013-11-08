@@ -1,0 +1,23 @@
+VehicleMotionHandler
+  - Type
+    - Polar
+    - Cartesian
+  - Robot
+  
+  Motion commands
+    Move(+/-d)
+    Rotate(+/-deg)
+    Move_till_sensor_change
+    Rotate_till_sensor_change
+    Revolve(+/-deg)
+    Revolve_till_sensor_change
+  
+
+There is a motion FIFO for the robot with move and rotate commands in the polar case. 
+
+If you ask the robot to move forward 10 inches it will do so .1 inch at a time and fire move on itself for the sensors to poll.
+    
+A free running interval timer has ticks at a frequency governed by the speed setting for the robot.
+
+Ticks cause motion commands to be pulled from the fifo and executed. 
+
