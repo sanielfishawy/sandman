@@ -1,0 +1,5 @@
+ - Stage
+   - Size
+   - Center of stage 
+   - Pan to center
+   - Scale to fit
