@@ -69,8 +69,11 @@ class window.PointSensorDriver
   constructor: (params={}) ->
     @sensor = params.sensor || raise "PointSensorDriver: You must specify a sensor"
     @k_sensor = normalize_to_kinetic @sensor
-  
-  get_state: => PointSensorDriver.over_ride or if @k_sensor.getAbsolutePosition().x > 150 or @k_sensor.getAbsolutePosition().y > 150 then "off" else "on"
+      
+  get_state: => 
+    # Note I believe this relies on the surface layer being the first layer checked by getIntersection because it is intatiated first in Stage.js.
+    s = @k_sensor.getStage().getIntersection @k_sensor.getAbsolutePosition()
+    if s and s.shape and s.shape.getName() is "surface" then "on" else "off"    
   
 
 # ==============

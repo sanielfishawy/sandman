@@ -5,10 +5,10 @@ class window.CustomShapes
 # ==============
 class CustomShapes::CenterRect
   constructor: (params={}) -> 
-    @center_x = normalize_to_num(params.x, 300)
-    @center_y = normalize_to_num(params.y, 300)
+    @center_x = normalize_to_num(params.x, 0)
+    @center_y = normalize_to_num(params.y, 0)
     params.width ||= 100
-    params.height ||= 50
+    params.height ||= 100
     params.x = Math.round(@center_x - (params.width / 2.0))
     params.y = Math.round(@center_y - (params.height / 2.0)) 
     params.stroke ||= "black"

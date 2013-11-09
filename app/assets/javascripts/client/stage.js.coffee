@@ -2,12 +2,21 @@ $(document).ready ->
     
   window.main_stage = new Stage {box_id: "main_stage"}
   
+  window.sandy = new Vehicle
+  main_stage.vehicle_layer.add sandy.shape
   
-  # window.sandy = new Vehicle x:10, y:10  
-  # main_stage.test_add sandy
-  # main_stage.setScale(.25)
-  # main_stage.kinetic_stage.draw()
-  # $(sandy.sequencer).on("tick", main_stage.draw)  
+  window.surface = new CustomShapes::CenterRect {
+    name: "surface"
+    stroke: "red" 
+    strokeWidth: 1
+    height: 4*12.to_px()
+    width: 4*12.to_px()
+  }
+  
+  main_stage.surface_layer.add surface.shape
+  main_stage.zoom(1)
+  
+  $(sandy.sequencer).on("tick", main_stage.draw)  
   
   
 
@@ -25,30 +34,19 @@ class window.Stage
     @center_y = @height / 2.0
     
     
-    @kinetic_stage = new Kinetic.Stage {container: @box_id, x:0, y:0, width: 5000, height: 5000}
-    # @vehicle_layer = new Kinetic.Layer()
-    # @kinetic_stage.add @vehicle_layer
-    # @test_layer = new Kinetic.Layer()
-    # @kinetic_stage.add @test_layer
+    @kinetic_stage = new Kinetic.Stage {container: @box_id, x:0, y:0, width: 1000, height: 1000}
     
     @surface_layer = new Kinetic.Layer 
-    @rect = new CustomShapes::CenterRect {
-      x:0
-      y:0
-      height:100
-      width:100
-      stroke: "red"
-      strokeWidth: 2
-      # fill: "red"
-      # fillEnabled:true
-    }
-    @kinetic_stage.add @surface_layer
-    @surface_layer.add @rect.shape
-    @draw()
+    @vehicle_layer = new Kinetic.Layer()
+    @test_layer = new Kinetic.Layer()
+    
+    @layers = [@vehicle_layer, @test_layer, @surface_layer]
+    
+    @kinetic_stage.add layer for layer in @layers
   
   pan_to_center: => 
     scale = @kinetic_stage.getScale().x
-    @surface_layer.setOffset x: -@box_center_x/scale, y:-@box_center_y/scale
+    layer.setOffset x: -@box_center_x/scale, y:-@box_center_y/scale for layer in @layers
     @draw()
   
   zoom: (z) => 
@@ -56,7 +54,7 @@ class window.Stage
     @pan_to_center()
   
   pan: (x,y) =>
-    @surface_layer.setOffset x:-x, y:-1
+    layer.setOffset x:-x, y:-1 for layer in @layers
     @draw() 
     
   test_add: (shape) => 
