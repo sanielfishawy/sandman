@@ -136,7 +136,14 @@ String.prototype.strip_vertical_space = -> String(this).replace(/[\r\n\v\f]+/g, 
 String.prototype.trim = () -> String(this).replace(/^\s+/, "").replace(/\s+$/, "")
 
 String.prototype.is_blank = () -> String(this) is ""
-  
+
+# ========================
+# = Extensions to Number =
+# ========================
+# Angles
+Number.prototype.to_rad = -> this*Math.PI/180.0
+Number.prototype.to_deg = -> this*180.0/Math.PI
+
 # =======================
 # = Extensions to Array =
 # =======================

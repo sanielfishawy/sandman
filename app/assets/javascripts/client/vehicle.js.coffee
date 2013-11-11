@@ -42,6 +42,12 @@ class window.Vehicle
     
     @move = @vehicle_motion_handler.move
     @rotate = @vehicle_motion_handler.rotate
+    @revolve = @vehicle_motion_handler.revolve
+    @rot = @vehicle_motion_handler.rotate
+    @kill_move = @vehicle_motion_handler.kill_current_move
+    @kill_all_moves = @vehicle_motion_handler.kill_all_moves
+    @current_position = @vehicle_motion_handler.current_position
+    @current_rotation = @vehicle_motion_handler.current_rotation
       
     
 # =================

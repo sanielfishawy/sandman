@@ -33,12 +33,14 @@ class window.PointSensor
   sense: => @get_state()
       
   get_state: => 
-    @state = @point_sensor_driver.get_state()
-    @set_indicator()
-    @state
+    new_state = @point_sensor_driver.get_state()
+    @set_indicator new_state 
+    $(document).trigger "sensor_change" if new_state isnt @state 
+    @state = new_state
+    return @state
   
-  set_indicator: => 
-    switch @state
+  set_indicator: (state) => 
+    switch state
       when "on"
         @circle.setFillEnabled true
         @circle.setStroke "green"
@@ -88,7 +90,7 @@ class window.EdgeSensor
   constructor: (params={}) ->
     @sequencer = params.sequencer
     @id = params.id || "no_id"
-    @d = params.d || 1
+    @d = params.d || 1.5
     @center_x = normalize_to_num(params.x, 0)
     @center_y = normalize_to_num(params.y, 0)
     @rotation = normalize_to_num(params.rotation, 0) # 0deg is along pos x axis

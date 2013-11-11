@@ -1,25 +1,6 @@
-$(document).ready -> 
-    
-  window.main_stage = new Stage {box_id: "main_stage"}
-  
-  window.sandy = new Vehicle
-  main_stage.vehicle_layer.add sandy.shape
-  
-  window.surface = new CustomShapes::CenterRect {
-    name: "surface"
-    stroke: "red" 
-    strokeWidth: 1
-    height: 4*12.to_px()
-    width: 4*12.to_px()
-  }
-  
-  main_stage.surface_layer.add surface.shape
-  main_stage.zoom(1)
-  
-  $(sandy.sequencer).on("tick", main_stage.draw)  
-  
-  
-
+# =========
+# = Stage =
+# =========
 class window.Stage
   
   constructor: (params) ->
@@ -36,17 +17,22 @@ class window.Stage
     
     @kinetic_stage = new Kinetic.Stage {container: @box_id, x:0, y:0, width: 1000, height: 1000}
     
-    @surface_layer = new Kinetic.Layer 
-    @vehicle_layer = new Kinetic.Layer()
-    @test_layer = new Kinetic.Layer()
+    @surface_layer = new Kinetic.Layer name: "surface_layer"
+    @vehicle_layer = new Kinetic.Layer name: "vehicle_layer"
+    @test_layer = new Kinetic.Layer name: "test_layer"
     
     @layers = [@vehicle_layer, @test_layer, @surface_layer]
     
     @kinetic_stage.add layer for layer in @layers
+    @add_redraw_handlers()
+    
+  add_redraw_handlers: =>
+    $(document).on("after_move", @draw)
+    $(document).on("sensor_change", @draw)
   
   pan_to_center: => 
     scale = @kinetic_stage.getScale().x
-    layer.setOffset x: -@box_center_x/scale, y:-@box_center_y/scale for layer in @layers
+    layer.setOffset x: -@box_center_x/scale, y:-@box_center_y/scale for layer in @kinetic_stage.children
     @draw()
   
   zoom: (z) => 
