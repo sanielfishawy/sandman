@@ -54,10 +54,3 @@ class window.Stage
   setScale: (s) =>
     @kinetic_stage.setScale s
     
-
-# ==========
-# = Layers =
-# ==========
-class window.Layers
-  
-  constructor: (params={}) -> 

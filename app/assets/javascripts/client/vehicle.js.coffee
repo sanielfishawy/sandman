@@ -34,7 +34,9 @@ class window.Vehicle
     
     @left_sensor = new PointSensor id: "left_sensor", sequencer: @sequencer, x:0, y:-@radius
     @shape.add @left_sensor.shape
-
+  
+  left_sensor_position: => 
+    @left_sensor.shape.getAbsolutePosition()
   
   delegate_methods: =>
     @s_start = @sequencer.start
@@ -42,6 +44,7 @@ class window.Vehicle
     
     @move = @vehicle_motion_handler.move
     @rotate = @vehicle_motion_handler.rotate
+    @rotate_to = @vehicle_motion_handler.rotate_to
     @revolve = @vehicle_motion_handler.revolve
     @rot = @vehicle_motion_handler.rotate
     @kill_move = @vehicle_motion_handler.kill_current_move

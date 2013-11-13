@@ -143,7 +143,7 @@ String.prototype.is_blank = () -> String(this) is ""
 # Angles
 Number.prototype.to_rad = -> this*Math.PI/180.0
 Number.prototype.to_deg = -> this*180.0/Math.PI
-
+Number.prototype.pos_deg = -> if this < 0 then 360 + (this % 360) else this % 360
 # =======================
 # = Extensions to Array =
 # =======================
