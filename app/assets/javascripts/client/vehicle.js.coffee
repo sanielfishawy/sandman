@@ -16,6 +16,7 @@ class window.Vehicle
     @add_shape()
     @add_sensors()
     @vehicle_motion_handler = new VehicleMotionHandler sequencer: @sequencer, vehicle: @
+    @smart_move_sequencer = new SmartMoveSequencer sequencer: @sequencer, vehicle: @, vmh: @vehicle_motion_handler
     @delegate_methods()
     @s_start()
       
@@ -26,15 +27,27 @@ class window.Vehicle
     @shape.add @body.shape
   
   add_sensors: =>
+    @all_sensors = []
+    
     @front_sensor = new PointSensor id: "front_sensor", sequencer: @sequencer, x:@radius, y:0
     @shape.add @front_sensor.shape
+    @all_sensors.push @front_sensor
     
     @right_sensor = new TangentSensor id: "right_sensor", sequencer: @sequencer, x:0, y:@radius, rotation: 90
     @shape.add @right_sensor.shape
+    @all_sensors.push @right_sensor
     
     @left_sensor = new PointSensor id: "left_sensor", sequencer: @sequencer, x:0, y:-@radius
     @shape.add @left_sensor.shape
+    @all_sensors.push @left_sensor
   
+  all_sensors_in: => 
+    for sensor in @all_sensors
+      return(false) if sensor.get_state() is "out" 
+    return true
+  
+  a_sensor_out: => not @all_sensors_in()
+    
   left_sensor_position: => 
     @left_sensor.shape.getAbsolutePosition()
   
@@ -51,6 +64,11 @@ class window.Vehicle
     @kill_all_moves = @vehicle_motion_handler.kill_all_moves
     @current_position = @vehicle_motion_handler.current_position
     @current_rotation = @vehicle_motion_handler.current_rotation
+    
+  go_to_edge: => @smart_move_sequencer.add_smart_move("GoToEdge")
+  put_right_sensor_out: => @smart_move_sequencer.add_smart_move("PutRightSensorOut")
+  go_to_parallel: => @smart_move_sequencer.add_smart_move("GoToParallel")
+    
       
     
 # =================

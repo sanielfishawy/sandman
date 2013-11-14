@@ -1,7 +1,5 @@
 $(document).ready -> 
   Runner.init()
-  # Runner.seg_circ()
-    
   
 class window.Runner
   
@@ -16,37 +14,41 @@ class window.Runner
     
     window.tracks = new Tracks vehicle:sandy 
     
-    main_stage.zoom(1)
+    main_stage.zoom(.5)
+    
+    @line_v()
+    
+    
+    
   
-  
-  @seg_circ: => 
-    r = 200
-    h = r*Math.sin(1.to_rad())
-    @data = "M #{h/2} #{-r} "
-    for ang in [1..360]
-      y = h*Math.sin(ang.to_rad())
-      x = h*Math.cos(ang.to_rad())
-      @data += " l #{x} #{y} "
-      
-    path = new Kinetic.Path {
-      x: 0,
-      y: 0,
-      data: @data
-      fillEnabled: false
+  @line: => 
+    scale = main_stage.kinetic_stage.getScale().x
+    offset_x = main_stage.test_layer.getOffset().x
+    offset_y = main_stage.test_layer.getOffset().y
+    line = new Kinetic.Line {
+      points: [offset_x, offset_y, offset_x+100, offset_y+100]
       stroke: "red"
-      strokeWidth: 1
     }
-    
-    @axis = "M #{-r} 0 L #{r} 0 M 0 #{r} L 0 #{-r}"
-    axis = new Kinetic.Path {
-      x: 0,
-      y: 0,
-      data: @axis
-      fillEnabled: false
-      stroke: "black"
-      strokeWidth: 1
+    line2 = new Kinetic.Line {
+      points: [sandy.shape.getPosition().x, sandy.shape.getPosition().y, sandy.left_sensor.shape.getPosition().x, sandy.left_sensor.shape.getPosition().y]
+      stroke: "green"
     }
-    
-    window.main_stage.test_add axis
-    
-    window.main_stage.test_add path
+    main_stage.test_add line
+    main_stage.test_add line2
+
+  @line_v: => 
+    scale = main_stage.kinetic_stage.getScale().x
+    console.log scale
+    offset_x = main_stage.test_layer.getOffset().x * scale
+    offset_y = main_stage.test_layer.getOffset().y * scale
+    start_x = (sandy.shape.getAbsolutePosition().x + offset_x) / scale
+    start_y = (sandy.shape.getAbsolutePosition().y + offset_y) / scale
+    end_x = (sandy.left_sensor.shape.getAbsolutePosition().x + offset_x) / scale
+    end_y = (sandy.left_sensor.shape.getAbsolutePosition().y + offset_y) / scale
+    line = new Kinetic.Line {
+      points: [start_x, start_y, end_x, end_y]
+      stroke: "green"
+    }
+    main_stage.test_add line
+  
+  @

@@ -1,5 +1,5 @@
 class window.Conversion
-  @px_per_inch = 20
+  @px_per_inch = 15
   
 
 Number.prototype.to_px = -> @*Conversion.px_per_inch

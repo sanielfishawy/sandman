@@ -9,13 +9,13 @@ class window.Stage
     @box_center_x = @box.width() / 2.0
     @box_center_y = @box.height() / 2.0
     
-    @height = params.height || 1000
-    @width = params.width || 1000
+    @height = params.height || 2000
+    @width = params.width || 2000
     @center_x = @width / 2.0
     @center_y = @height / 2.0
     
     
-    @kinetic_stage = new Kinetic.Stage {container: @box_id, x:0, y:0, width: 1000, height: 1000}
+    @kinetic_stage = new Kinetic.Stage {container: @box_id, x:0, y:0, width: 2000, height: 2000}
     
     @surface_layer = new Kinetic.Layer name: "surface_layer"
     @vehicle_layer = new Kinetic.Layer name: "vehicle_layer"
@@ -40,7 +40,7 @@ class window.Stage
     @pan_to_center()
   
   pan: (x,y) =>
-    layer.setOffset x:-x, y:-1 for layer in @layers
+    layer.setOffset x:-x, y:-y for layer in @layers
     @draw() 
     
   test_add: (shape) => 

@@ -30,22 +30,21 @@ class window.PointSensor
   
   add_event_handlers: => $(@sequencer).on("sense", @sense)
   
-  sense: => @get_state()
-      
-  get_state: => 
-    new_state = @point_sensor_driver.get_state()
-    @set_indicator new_state 
+  sense: => 
+    new_state = @get_state()
     $(document).trigger "sensor_change" if new_state isnt @state 
-    @state = new_state
-    return @state
+    @state = new_state 
+    @set_indicator @state 
+    
+  get_state: => @point_sensor_driver.get_state()
   
   set_indicator: (state) => 
     switch state
-      when "on"
+      when "in"
         @circle.setFillEnabled true
         @circle.setStroke "green"
         @circle.setFill "green"
-      when "off"
+      when "out"
         @circle.setFillEnabled true
         @circle.setStroke "red"
         @circle.setFill "red"
@@ -75,7 +74,7 @@ class window.PointSensorDriver
   get_state: => 
     # Note I believe this relies on the surface layer being the first layer checked by getIntersection because it is intatiated first in Stage.js.
     s = @k_sensor.getStage().getIntersection @k_sensor.getAbsolutePosition()
-    if s and s.shape and s.shape.getName() is "surface" then "on" else "off"    
+    if s and s.shape and s.shape.getName() is "surface" then "in" else "out"    
   
 
 # ==============
@@ -126,13 +125,13 @@ class window.EdgeSensor
 
   get_state: => 
     @sensor_state = inboard: @inboard_sensor.get_state(), outboard: @outboard_sensor.get_state()
-    if @sensor_state.inboard is "on" and @sensor_state.outboard is "on"
+    if @sensor_state.inboard is "in" and @sensor_state.outboard is "in"
       @state = "in" 
-    else if @sensor_state.inboard is "off" and @sensor_state.outboard is "off"
+    else if @sensor_state.inboard is "out" and @sensor_state.outboard is "out"
       @state = "out" 
-    else if @sensor_state.inboard is "on" and @sensor_state.outboard is "off"
+    else if @sensor_state.inboard is "in" and @sensor_state.outboard is "out"
       @state = "on" 
-    else if @sensor_state.inboard is "off" and @sensor_state.outboard is "on" 
+    else if @sensor_state.inboard is "out" and @sensor_state.outboard is "in" 
       @state = "error" 
       console.log "EdgeSensor[#{@id}] - my out board sensor is on and inboard sensor is off. Does not compute:(" 
     else 
