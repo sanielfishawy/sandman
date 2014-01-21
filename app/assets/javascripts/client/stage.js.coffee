@@ -4,6 +4,7 @@
 class window.Stage
   
   constructor: (params) ->
+    Stage.instance = @
     @box_id = params.box_id || error "Stage: I need a box_id. Damn it."
     @box = $("##{@box_id}")
     @box_center_x = @box.width() / 2.0
@@ -17,11 +18,12 @@ class window.Stage
     
     @kinetic_stage = new Kinetic.Stage {container: @box_id, x:0, y:0, width: 2000, height: 2000}
     
-    @surface_layer = new Kinetic.Layer name: "surface_layer"
     @vehicle_layer = new Kinetic.Layer name: "vehicle_layer"
+    @surface_layer = new Kinetic.Layer name: "surface_layer"
     @test_layer = new Kinetic.Layer name: "test_layer"
+    @construction_layer = new Kinetic.Layer name: "vehicle_layer"
     
-    @layers = [@vehicle_layer, @test_layer, @surface_layer]
+    @layers = [@vehicle_layer, @test_layer, @surface_layer, @construction_layer]
     
     @kinetic_stage.add layer for layer in @layers
     @add_redraw_handlers()
@@ -53,4 +55,10 @@ class window.Stage
   
   setScale: (s) =>
     @kinetic_stage.setScale s
+    
+  adjust_point_for_offset: (point) => 
+    scale = @kinetic_stage.getScale().x
+    offset_x = @vehicle_layer.getOffset().x * scale
+    offset_y = @vehicle_layer.getOffset().y * scale
+    {x: (point.x + offset_x) / scale, y: (point.y + offset_y) / scale}
     

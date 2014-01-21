@@ -128,6 +128,7 @@ class window.VehicleMotionHandler
     for step in [1..num_rotation_units]
       @rotate(rotation_dir*@rotation_unit.fast, "fast", stop_on_sensor_change)
       @move(@rc.move_dir*d,"slow", stop_on_sensor_change)
+    # Construction.clear()
     return deg
         
   current_position: => @k_vehicle.getAbsolutePosition()
@@ -156,15 +157,7 @@ class window.RevolveCalculator
     
     @move_dir = @get_move_dir()   
     
-    scale = main_stage.kinetic_stage.getScale.x
-    offset_x = main_stage.test_layer.getOffset().x
-    offset_y = main_stage.test_layer.getOffset().y
-    line = new Kinetic.Line {
-      points: [@point.x + (offset_x*scale), @point.y + (offset_y*scale), @vehicle.shape.getPosition().x, @vehicle.shape.getPosition().y]
-      stroke: "red"
-      strokeWidth: 1
-    } 
-    main_stage.test_add  line
+    Construction.add_line(@point, @vehicle.current_position())
           
   get_move_dir: => 
     return 1 if @hand is "right" and @rotation_dir is 1

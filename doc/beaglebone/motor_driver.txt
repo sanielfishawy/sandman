@@ -1,0 +1,3 @@
+- Create device tree overlay.
+- Pinout is on google drive 
+- pin.coffee

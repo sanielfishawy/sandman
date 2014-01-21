@@ -1,0 +1,97 @@
+Arduino Architecture
+  - int going_back = 0
+  - int last_action 
+  
+
+  
+  - Methods
+    - go_forward{} - goes forward until new motion command is issued
+      last_action = FROWARD
+    
+    - go_back(time){}
+      going_back = 1
+      last_action = BACK
+      go_back codes
+      delay(time)
+      going_back = 0
+      
+    - rotate( dir, int time){}
+      last_action = ROTATE
+      rotate based on sensor state that was gotten before
+      use same global method of saving rotating state.
+    
+    - get_sensors
+       gets all sensors and saves in global variables.
+      
+    - next(){}
+      if going_back or rotating
+        return
+      else if last_action == BACK
+        rotate()
+      else if last_action == ROTATE
+        forward()
+      else
+        get_sensors()
+        if sensor 1 is off back()
+        if ... back
+        else (#no sensors are off)
+          forward()  
+  
+  - Main loop calls next()
+   void loop(){next()}
+
+
+ - Dev environment
+   - Text editor
+     - Textmate
+   - Browser
+     - Firefox
+       - Firebug - dev console and debugger for firefox.
+       - Coffeescript interpreter addon for firebug (benefit)
+       - Doest show objects as pretty as safari or chrome
+     - Safari
+       - Debugger built in.
+   
+ - Programming languages
+   - Compiled languages
+     - compiled to assembly code on the target processor
+     - Eg c
+   - Interpreted languages
+     - Console
+     - Rapid dev
+     - Great debuggers
+     - Visibility code running on machine
+     - Examples
+       - Perl
+       - Python
+       - Ruby
+       - Javascript () - Coffescript makes JS read like python or ruby.
+       
+    - Javascript
+      - Object oriented
+      - Sophisticated event model.
+      - Great light weight debugger and console.
+    
+    - Node.js
+      - Same js language for both client and server
+
+ - Sandy Architecture
+   - Have sandy be the web server.
+   - Run node.js on on sandy.
+   - Run any browser as the client on a remote device.
+
+
+  - Coffescript
+    - coffeescript.org
+    
+
+Steps to get sandy functional:
+  - Get beagle bone up
+  - Add wifi
+  - Add node.js
+  - Create drivers for stepper motor
+  - Create drivers for sensors
+    - Make sensors read magic marker accurately.
+    - Create sensor configures.
+  - Done.
+      

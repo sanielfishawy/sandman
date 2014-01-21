@@ -73,8 +73,9 @@ class window.PointSensorDriver
       
   get_state: => 
     # Note I believe this relies on the surface layer being the first layer checked by getIntersection because it is intatiated first in Stage.js.
-    s = @k_sensor.getStage().getIntersection @k_sensor.getAbsolutePosition()
-    if s and s.shape and s.shape.getName() is "surface" then "in" else "out"    
+    # s = @k_sensor.getStage().getIntersection @k_sensor.getAbsolutePosition()
+    # if s and s.shape and s.shape.getName() is "surface" then "in" else "out"  
+    if Surface.is_out @k_sensor.getAbsolutePosition() then "out" else "in"
   
 
 # ==============
@@ -187,8 +188,8 @@ class window.TangentSensor
     @shape.add @orientation_tic
   
   add_sensors: =>
-    @trailing_sensor = new EdgeSensor {sequencer: @sequencer, id:"#{@id}_leading", y: (-@d/2), x:0}
-    @leading_sensor = new EdgeSensor {sequencer: @sequencer, id:"#{@id}_trailing", y: (@d/2), x:0}
+    @trailing_sensor = new EdgeSensor {sequencer: @sequencer, id:"#{@id}_leading", y: (@d/2), x:0}
+    @leading_sensor = new EdgeSensor {sequencer: @sequencer, id:"#{@id}_trailing", y: (-@d/2), x:0}
     @shape.add n_to_k s for s in [@leading_sensor, @trailing_sensor]
   
   add_line: =>

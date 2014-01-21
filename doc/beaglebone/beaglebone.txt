@@ -1,0 +1,93 @@
+ssh over usb client.
+  Following the instructions using:
+     http://learn.adafruit.com/ssh-to-beaglebone-black-over-usb/installing-drivers-mac
+  
+  ssh 192.168.7.2 -l root
+  
+  
+ssh over wired internet
+  ifconfig -a on beagle to determine ip.
+  ssh 192.. -l root
+  
+
+
+Debian uses apt-get DPKG
+Angstrom uses OPKG
+
+SSHFS
+-----
+ - Mount beaglebone filesystem onto local directory.
+ - On mac install fuse and sshfs from http://osxfuse.github.io/
+ - sshfs root@192.168.1.125: local_dir
+ - umount local_dir
+ - sshfs root@192.168.7.2:beagle beagle_mnt    (from sandman topic)
+
+
+SET THE TIME VIA NTP
+--------------------
+http://derekmolloy.ie/automatically-setting-the-beaglebone-black-time-using-ntp/
+
+
+SCAN NETWORK
+------------
+nmap
+
+WIFI
+-------
+http://www.codealpha.net/864/how-to-set-up-a-rtl8192cu-on-the-beaglebone-black-bbb/
+http://bonenotes.tumblr.com/
+s
+ - iw
+   - iwlist
+   - iw dev %k set power_save off
+
+- ip link
+
+- Connman
+   - systemctl status connman.service
+   - systemctl stop connman.service
+
+- systemd
+  - systemctl --system daemon-reload
+  - connman
+  - sani_wifi
+  - 
+
+- list of tools
+  - http://albanianwizard.org/linux-network-configuration-for-home-users.albanianwizard
+
+- wpa_supplicant -dd -Dwext -c/etc/wpa_supplicant.conf -iwlan0
+
+- Using Atheros
+  - https://groups.google.com/forum/#!topic/beagleboard/9KCIs7yqsa8
+
+- ifup, ifdown, ifquery
+
+- kill `pidof wpa_supplicant`  or...
+  killall -HUP wpa_supplicant
+
+- Services
+  /lib/systemd/system/ 
+
+- route add -net default gw 192.168.1.254
+
+- udhcpc -R -n -p /var/run/udhcpc.wlan0.pid -i wlan0
+
+- runlevel
+  - init 3
+
+
+GPIO
+----
+  - export SLOTS=/sys/devices/bone_capemgr.9/slots
+  - export PINS=/sys/kernel/debug/pinctrl/44e10800.pinmux/pins
+  
+Device tree overlays allow you to update the device tree at runtime without having to recompile the whole device tree and reboot.f
+  - Set up pins in overlay.
+  - Compile
+  - Copy the dtbo file to /lib/firmware
+  - echo dtbo file name without the extension and version to $SLOTS
+  - check $PINS to see it has taken effect. Also you can look at dmesg.
+  - cd /sys/class/gpio
+  - echo pin# > export e.g. echo 60 > export
+

@@ -8,15 +8,19 @@ class window.Runner
 
     window.sandy = new Vehicle
     window.main_stage.vehicle_layer.add sandy.shape
-
-    window.surface = Surface.shape()
-    main_stage.surface_layer.add window.surface
+    
+    
+    
+    Surface.add_shape()
     
     window.tracks = new Tracks vehicle:sandy 
     
-    main_stage.zoom(.5)
+    main_stage.zoom(1)
     
-    @line_v()
+    window.algo = new Algorithm(sandy)
+    algo.move_forward()
+    
+    # @line_v()
     
     
     
