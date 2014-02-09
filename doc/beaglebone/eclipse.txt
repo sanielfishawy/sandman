@@ -1,0 +1,6 @@
+Remote Debugger for C
+---------------------
+  - On Ubuntu virtualbox install gdb-multiarch
+  - On beagle 
+    - gdbserver pc_hostip:port executable_file
+  

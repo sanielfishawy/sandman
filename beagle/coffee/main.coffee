@@ -1,8 +1,4 @@
-# global.Led = require("./bb_led")
-global.rw = require("./rw")
-rw.set_emulated false
-global.Dsc = require("./stepper")
-global.c = Dsc.create()
+global.Dsc = require("./stepper").create()
 
 c.set_step_resolution(2, 4)
 
@@ -24,7 +20,7 @@ execute = =>
   else
     c.move(step.dir, step.n, execute)
 
-# execute()
+execute()
 # setTimeout(c.dsd.stop,  2000)
 
 # setInterval(

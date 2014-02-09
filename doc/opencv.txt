@@ -1,0 +1,780 @@
+Installing Opencv with python on Mac
+ - http://stackoverflow.com/questions/5846745/opencv-python-osx
+
+ - cmake gives the following error
+ 
+ CMake Warning at cmake/OpenCVFindLibsGUI.cmake:18 (find_package):
+   By not providing "FindQt5Core.cmake" in CMAKE_MODULE_PATH this project has
+   asked CMake to find a package configuration file provided by "Qt5Core", but
+   CMake did not find one.
+
+   Could not find a package configuration file provided by "Qt5Core" with any
+   of the following names:
+
+     Qt5CoreConfig.cmake
+     qt5core-config.cmake
+
+   Add the installation prefix of "Qt5Core" to CMAKE_PREFIX_PATH or set
+   "Qt5Core_DIR" to a directory containing one of the above files.  If
+   "Qt5Core" provides a separate development package or SDK, be sure it has
+   been installed.
+ 
+ 
+ TRY - Installing qt4.8 and see if they appear somewhere.
+
+ TRY - find / | grep Qt5CoreConfig.cmake
+   I get: /.MobileBackups/Computer/2014-02-04-203124/Volume/usr/local/Qt5.2.0/5.2.0/clang_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake
+   Conclusion these files were installed with qt5.0 previously but I deleted them.
+   Look for similar in similar path for qt4.8. Cant find.
+
+ TRY - Installing qt5 and see if those appear somewhere.
+ 
+ 
+ QT5 installed with the following paths
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/5.2.1/QtSerialPort/private/qserialport_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/5.2.1/QtSerialPort/private/qserialport_symbian_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/5.2.1/QtSerialPort/private/qserialport_unix_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/5.2.1/QtSerialPort/private/qserialport_win_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private/qsvgfont_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private/qsvgfunctions_wince_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/qsvggenerator.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private/qsvggraphics_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private/qsvghandler_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private/qsvgnode_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/qsvgrenderer.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private/qsvgstructure_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private/qsvgstyle_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private/qsvgtinydocument_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/qsvgwidget.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/qtapsensor.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/5.2.1/QtSensors/private/qtapsensor_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions/5/Headers/qtbluetoothversion.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/qtiltsensor.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/5.2.1/QtSensors/private/qtiltsensor_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions/5/Headers/5.2.1/QtNfc/private/qtlv_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Versions/5/Headers/qtmacextrasversion.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions/5/Headers/qtnfcversion.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Versions/5/Headers/qtpositioningversion.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/qtsensorsversion.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/qtserialportversion.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/qtsvgglobal.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/qtsvgversion.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/5.2.1/QtSerialPort/private/qtudev_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/qwineventnotifier.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/5.2.1/QtSensors/private/sensorlog_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions/5/Headers/5.2.1/QtBluetooth/private/servicemap_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions/5/Headers/5.2.1/QtBluetooth/private/service_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/5.2.1/QtSensors/private/simulatorgesturescommon_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/slideshow.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/delayedencoding/sourcewidget.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/svgtextobject.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer/svgview.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions/5/Headers/5.2.1/QtNfc/private/targetemulator_p.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/lib/tools.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/webbrowser
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/webbrowser/webaxwidget.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/window.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/window.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/lib/worker.h
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/qutlook/addressview.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/network/bearercloud/bearercloud.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/network/bearercloud/cloud.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices/contenttab.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/demoapplication.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices/desktopwidget.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/displaywidget.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embeddedsvgviewer/embeddedsvgviewer.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/fluidlauncher.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/opengl/glbox.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/opengl/globjwin.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/opengl/framebufferobject/glwidget.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices/linktab.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/hierarchy/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/qutlook/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/multiple/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/menus/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/opengl/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/simple/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/wrapper/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/webbrowser/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/comapp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/comapp/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/delayedencoding/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/opengl/framebufferobject/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embeddedsvgviewer/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/network/bearercloud/main.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer/mainwindow.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/menus/menus.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/delayedencoding/mimedata.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/lib/networker.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/hierarchy/objects.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/pictureflow.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/slideshow.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/delayedencoding/sourcewidget.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/svgtextobject.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer/svgview.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/lib/tools.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/weatherinfo/weatherinfo.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/window.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/window.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/lib/worker.cpp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/comapp/comapp.rc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/hierarchy/hierarchy.rc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/menus/menus.rc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/multiple/multipleax.rc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/opengl/opengl.rc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/simple/simple.rc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/wrapper/wrapperax.rc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/walkthrough
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/walkthrough/Form1.cs
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/main.cs
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/walkthrough/Form1.vb
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/hierarchy/hierarchy.def
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/multiple/multipleax.def
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/wrapper/wrapperax.def
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/app.csproj
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/walkthrough/csharp.csproj
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/lib/lib.vcproj
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/wrapper.sln
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/backup_registration.xml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/config_wince
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/config_wince/config.xml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/config.xml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/weatherinfo/icons/README.txt
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Bluetooth
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Bluetooth/Qt5BluetoothConfig.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Bluetooth/Qt5BluetoothConfigVersion.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QMngPlugin.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5MacExtras
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5MacExtras/Qt5MacExtrasConfig.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5MacExtras/Qt5MacExtrasConfigVersion.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Nfc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Nfc/Qt5NfcConfig.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Nfc/Qt5NfcConfigVersion.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Positioning
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Positioning/Qt5PositioningConfig.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Positioning/Qt5PositioningConfigVersion.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Sensors
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Sensors/Qt5SensorsConfig.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Sensors/Qt5SensorsConfigVersion.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Sensors/Qt5Sensors_.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Sensors/Qt5Sensors_genericSensorPlugin.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5SerialPort
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5SerialPort/Qt5SerialPortConfig.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5SerialPort/Qt5SerialPortConfigVersion.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Svg
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Svg/Qt5SvgConfig.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Svg/Qt5SvgConfigVersion.cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/resources
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/resources/shapes.dat
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/svggenerator.desktop
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer/svgviewer.desktop
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/textobject.desktop
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtBluetooth/libdeclarative_bluetooth.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtBluetooth/libdeclarative_bluetooth_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtNfc/libdeclarative_nfc.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtNfc/libdeclarative_nfc_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtPositioning/libdeclarative_positioning.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtPositioning/libdeclarative_positioning_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtSensors/libdeclarative_sensors.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtSensors/libdeclarative_sensors_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqmng.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqmng_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqsvg.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/iconengines
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/iconengines/libqsvgicon.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/iconengines/libqsvgicon_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqsvg_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqtga.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqtga_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqtiff.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqtiff_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/position
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/position/libqtposition_positionpoll.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/position/libqtposition_positionpoll_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensorgestures
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensorgestures/libqtsensorgestures_plugin.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensorgestures/libqtsensorgestures_plugin_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensorgestures/libqtsensorgestures_shakeplugin.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensorgestures/libqtsensorgestures_shakeplugin_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensors
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensors/libqtsensors_dummy.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensors/libqtsensors_dummy_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensors/libqtsensors_generic.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensors/libqtsensors_generic_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqwbmp.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats/libqwbmp_debug.dylib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/hierarchy/hierarchy.inf
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/menus/menus.inf
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/multiple/multiple.inf
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/opengl/opengl.inf
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/simple/simple.inf
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/wrapper/wrapper.inf
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/pkgconfig/Qt5Bluetooth.pc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/pkgconfig/Qt5MacExtras.pc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/pkgconfig/Qt5Nfc.pc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/pkgconfig/Qt5Positioning.pc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/pkgconfig/Qt5Sensors.pc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/pkgconfig/Qt5SerialPort.pc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/pkgconfig/Qt5Svg.pc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Contents/Info.plist
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Contents/Info.plist
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Contents/Info.plist
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Contents/Info.plist
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Contents/Info.plist
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Contents/Info.plist
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Contents/Info.plist
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_bluetooth.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_bluetooth_private.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_macextras.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_macextras_private.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_nfc.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_nfc_private.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_positioning.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_positioning_private.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_sensors.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_sensors_private.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_serialport.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_serialport_private.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_svg.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules/qt_lib_svg_private.pri
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/QtBluetooth.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/QtBluetooth_debug.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/QtMacExtras.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/QtMacExtras_debug.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/QtNfc.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/QtNfc_debug.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/QtPositioning.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/QtPositioning_debug.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/QtSensors.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/QtSensors_debug.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/QtSerialPort.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/QtSerialPort_debug.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/QtSvg.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/QtSvg_debug.prl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/activeqt.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/network/bearercloud/bearercloud.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/comapp/comapp.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/delayedencoding/delayedencoding.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices/desktopservices.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/draganddrop.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/embedded.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embeddedsvgviewer/embeddedsvgviewer.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/fluidlauncher.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/opengl/framebufferobject/framebufferobject.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/hierarchy/hierarchy.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/menus/menus.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/multiple/multiple.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/network/network.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/opengl/opengl.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/opengl/opengl.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/qutlook/qutlook.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/richtext.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/simple/simple.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svg.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/svggenerator.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer/svgviewer.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/textobject.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/weatherinfo/weatherinfo.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/webbrowser/webbrowser.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/wrapper/wrapper.pro
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_da.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_fr.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_ko.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_pl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_sl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_zh_CN.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/assistant_zh_TW.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_fr.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_ko.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_pl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_sl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_zh_CN.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/designer_zh_TW.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_fr.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_ko.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_pl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_sl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_zh_CN.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/linguist_zh_TW.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qmlviewer_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qmlviewer_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qmlviewer_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qmlviewer_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qmlviewer_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qmlviewer_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtbase_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtbase_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtbase_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtbase_it.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtbase_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtbase_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtbase_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtbase_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_ko.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_pl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_sl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_zh_CN.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtconfig_zh_TW.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtdeclarative_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtdeclarative_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtdeclarative_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtdeclarative_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtdeclarative_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtmultimedia_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtmultimedia_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtmultimedia_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtmultimedia_it.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtmultimedia_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtmultimedia_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtmultimedia_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtmultimedia_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtquick1_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtquick1_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtquick1_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtquick1_it.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtquick1_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtquick1_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtquick1_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtquick1_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtscript_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtscript_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtscript_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtscript_it.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtscript_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtscript_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtscript_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtscript_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtxmlpatterns_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtxmlpatterns_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtxmlpatterns_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtxmlpatterns_it.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtxmlpatterns_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtxmlpatterns_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtxmlpatterns_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qtxmlpatterns_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_ar.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_da.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_es.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_fa.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_fr.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_gl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_he.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_cs.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_da.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_de.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_fr.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_gl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_ko.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_pl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_sl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_zh_CN.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_help_zh_TW.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_hu.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_it.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_ja.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_ko.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_lt.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_pl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_pt.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_ru.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_sk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_sl.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_sv.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_uk.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_zh_CN.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations/qt_zh_TW.qm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/Blend.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/BrightnessContrast.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/Colorize.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/ColorOverlay.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/ConicalGradient.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/Desaturate.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/DirectionalBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/Displace.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/DropShadow.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/FastBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private/FastGlow.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private/FastInnerShadow.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private/FastMaskedBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/GammaAdjust.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/GaussianBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private/GaussianDirectionalBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private/GaussianGlow.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private/GaussianInnerShadow.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private/GaussianMaskedBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/Glow.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/HueSaturation.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/InnerShadow.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/LevelAdjust.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/LinearGradient.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/MaskedBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/OpacityMask.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/RadialBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/RadialGradient.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/RectangularGlow.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/RecursiveBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private/SourceProxy.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/ThresholdMask.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/ZoomBlur.qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtPositioning/plugins.qmltypes
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtSensors/plugins.qmltypes
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtBluetooth/plugins.qmltypes
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtNfc/plugins.qmltypes
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/delayedencoding/delayedencoding.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices/desktopservices.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embeddedsvgviewer/embeddedsvgviewer.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/opengl/framebufferobject/framebufferobject.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/network/bearercloud/icons.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/resources.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/svggenerator.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer/svgviewer.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/weatherinfo/weatherinfo.qrc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/walkthrough/Form1.resx
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/webbrowser/mainwindow.ui
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/webbrowser/mainwindow_windowsmobile.ui
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/forms
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/forms/window.ui
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/walkthrough/vb.vbproj
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/menus/fileopen.xpm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/qutlook/fileopen.xpm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/qutlook/fileprint.xpm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/menus/filesave.xpm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/qutlook/filesave.xpm
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/translations
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtSensors
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtPositioning
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtNfc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtGraphicalEffects
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml/QtBluetooth
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/qml
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensors
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/sensorgestures
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/position
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/imageformats
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins/iconengines
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/plugins
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs/modules
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/mkspecs
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1/QtSvg
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers/5.2.1
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5/Headers
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions/5
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Versions
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSvg.framework
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/5.2.1/QtSerialPort/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/5.2.1/QtSerialPort
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers/5.2.1
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5/Headers
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions/5
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Versions
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSerialPort.framework
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/5.2.1/QtSensors/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/5.2.1/QtSensors
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers/5.2.1
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5/Headers
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions/5
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Versions
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtSensors.framework
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Versions/5/Headers/5.2.1/QtPositioning/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Versions/5/Headers/5.2.1/QtPositioning
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Versions/5/Headers/5.2.1
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Versions/5/Headers
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Versions/5
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Versions
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtPositioning.framework
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions/5/Headers/5.2.1/QtNfc/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions/5/Headers/5.2.1/QtNfc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions/5/Headers/5.2.1
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions/5/Headers
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions/5
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Versions
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtNfc.framework
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Versions/5/Headers/5.2.1/QtMacExtras/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Versions/5/Headers/5.2.1/QtMacExtras
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Versions/5/Headers/5.2.1
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Versions/5/Headers
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Versions/5
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Versions
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtMacExtras.framework
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions/5/Headers/5.2.1/QtBluetooth/private
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions/5/Headers/5.2.1/QtBluetooth
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions/5/Headers/5.2.1
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions/5/Headers
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions/5
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Versions
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework/Contents
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/QtBluetooth.framework
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/pkgconfig
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Svg
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5SerialPort
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Sensors
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Positioning
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Nfc
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5MacExtras
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Gui
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/Qt5Bluetooth
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/lib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer/files
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svgviewer
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/resources
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator/forms
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/svggenerator
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject/files
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext/textobject
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/richtext
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/opengl/framebufferobject
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/opengl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/network/bearercloud
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/network
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embeddedsvgviewer/files
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embeddedsvgviewer
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/weatherinfo/icons
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/weatherinfo
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/slides
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/screenshots
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher/config_wince
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/fluidlauncher
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices/resources
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices/data
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded/desktopservices
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/embedded
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/delayedencoding/images
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop/delayedencoding
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg/draganddrop
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/svg
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/wrapper
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/webbrowser
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/simple
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/qutlook
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/opengl
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/multiple
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/menus
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/hierarchy
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper/lib
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/wrapper
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet/walkthrough
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/dotnet
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt/comapp
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples/activeqt
+ /Users/sani/Qt5.2.1/5.2.1/clang_64/examples
+ /Users/sani/Qt5.2.1/5.2.1/clang_64
+ /Users/sani/Qt5.2.1/5.2.1
+ Writing uninstaller.
+
+ TRY running cmake again with CMAKE_PREFIX_PATH=/Users/sani
+ 
+ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D CMAKE_PREFIX_PATH=/Users/sani ..
+ 
+ RESULT: Still the same error. 
+ 
+ Try: with CMAKE_PREFIX_PATH=/Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/
+  cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D CMAKE_PREFIX_PATH=/Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/ ..
+  RESULT: Still the same error. 
+
+ YAY: worked. But Python is broken and cant find numpy.
+ --   Python:
+ --     Interpreter:                 /opt/local/bin/python2 (ver 1.4)
+ --     Libraries:                   NO
+ --     numpy:                       NO (Python wrappers can not be generated)
+ --     packages path:               lib/python2.7/site-packages
+
+ -- General configuration for OpenCV 2.4.8 =====================================
+ --   Version control:               
+ -- 
+ --   Platform:
+ --     Host:                        Darwin 12.5.0 i386
+ --     CMake:                       2.8.12
+ --     CMake generator:             Unix Makefiles
+ --     CMake build tool:            /opt/local/bin/gmake
+ --     Configuration:               RELEASE
+ -- 
+ --   C/C++:
+ --     Built as dynamic libs?:      YES
+ --     C++ Compiler:                /usr/bin/c++  (ver 4.2.0)
+ --     C++ flags (Release):         -fsigned-char -W -Werror=return-type -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wno-narrowing -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -fdiagnostics-show-option -fno-omit-frame-pointer -msse -msse2 -msse3 -O3 -DNDEBUG  -DNDEBUG
+ --     C++ flags (Debug):           -fsigned-char -W -Werror=return-type -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wno-narrowing -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -fdiagnostics-show-option -fno-omit-frame-pointer -msse -msse2 -msse3 -g  -O0 -DDEBUG -D_DEBUG
+ --     C Compiler:                  /usr/bin/cc
+ --     C flags (Release):           -fsigned-char -W -Werror=return-type -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wno-narrowing -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -fdiagnostics-show-option -fno-omit-frame-pointer -msse -msse2 -msse3 -O3 -DNDEBUG  -DNDEBUG
+ --     C flags (Debug):             -fsigned-char -W -Werror=return-type -Werror=address -Werror=sequence-point -Wformat -Werror=format-security -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wundef -Winit-self -Wpointer-arith -Wshadow -Wsign-promo -Wno-narrowing -Wno-delete-non-virtual-dtor -Wno-unnamed-type-template-args -fdiagnostics-show-option -fno-omit-frame-pointer -msse -msse2 -msse3 -g  -O0 -DDEBUG -D_DEBUG
+ --     Linker flags (Release):      
+ --     Linker flags (Debug):        
+ --     Precompiled headers:         NO
+ -- 
+ --   OpenCV modules:
+ --     To be built:                 core flann imgproc highgui features2d calib3d ml video legacy objdetect photo gpu ocl nonfree contrib java stitching superres ts videostab
+ --     Disabled:                    world
+ --     Disabled by dependency:      -
+ --     Unavailable:                 androidcamera dynamicuda python
+ -- 
+ --   GUI: 
+ --     QT 5.x:                      YES (ver 5.2.1)
+ --     QT OpenGL support:           NO
+ --     OpenGL support:              NO
+ -- 
+ --   Media I/O: 
+ --     ZLib:                        build (ver 1.2.7)
+ --     JPEG:                        build (ver 62)
+ --     PNG:                         build (ver 1.5.12)
+ --     TIFF:                        build (ver 42 - 4.0.2)
+ --     JPEG 2000:                   build (ver 1.900.1)
+ --     OpenEXR:                     build (ver 1.7.1)
+ -- 
+ --   Video I/O:
+ --     DC1394 1.x:                  NO
+ --     DC1394 2.x:                  NO
+ --     FFMPEG:                      YES
+ --       codec:                     YES (ver Unknown)
+ --       format:                    YES (ver Unknown)
+ --       util:                      YES (ver Unknown)
+ --       swscale:                   YES (ver Unknown)
+ --       gentoo-style:              YES
+ --     OpenNI:                      NO
+ --     OpenNI PrimeSensor Modules:  NO
+ --     PvAPI:                       NO
+ --     GigEVisionSDK:               NO
+ --     QuickTime:                   NO
+ --     QTKit:                       YES
+ --     V4L/V4L2:                    NO/NO
+ -- 
+ --   Other third-party libraries:
+ --     Use IPP:                     NO
+ --     Use Eigen:                   NO
+ --     Use TBB:                     NO
+ --     Use OpenMP:                  NO
+ --     Use GCD                      YES
+ --     Use Concurrency              NO
+ --     Use C=:                      NO
+ --     Use Cuda:                    NO
+ --     Use OpenCL:                  YES
+ -- 
+ --   OpenCL:
+ --     Version:                     static
+ --     libraries:                   -framework OpenCL
+ --     Use AMD FFT:                 NO
+ --     Use AMD BLAS:                NO
+ -- 
+ --   Python:
+ --     Interpreter:                 /opt/local/bin/python2 (ver 1.4)
+ --     Libraries:                   NO
+ --     numpy:                       NO (Python wrappers can not be generated)
+ --     packages path:               lib/python2.7/site-packages
+ -- 
+ --   Java:
+ --     ant:                         /usr/bin/ant (ver 1.8.2)
+ --     JNI:                         /System/Library/Frameworks/JavaVM.framework/Headers /System/Library/Frameworks/JavaVM.framework/Headers /System/Library/Frameworks/JavaVM.framework/Headers
+ --     Java tests:                  YES
+ -- 
+ --   Documentation:
+ --     Build Documentation:         NO
+ --     Sphinx:                      NO
+ --     PdfLaTeX compiler:           NO
+ -- 
+ --   Tests and samples:
+ --     Tests:                       YES
+ --     Performance tests:           YES
+ --     C/C++ Examples:              YES
+ -- 
+ --   Install path:                  /usr/local
+ -- 
+ --   cvconfig.h is in:              /Users/sani/Desktop/opencv-2.4.8/release
+ -- -----------------------------------------------------------------
+
+ TRY -edit release/CMakeCache.txt and fix the paths for python. See if cmake is better:
+ cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local -D WITH_TBB=ON -D BUILD_NEW_PYTHON_SUPPORT=ON -D WITH_V4L=ON -D INSTALL_C_EXAMPLES=ON -D INSTALL_PYTHON_EXAMPLES=ON -D BUILD_EXAMPLES=ON -D WITH_QT=ON -D WITH_OPENGL=ON -D CMAKE_PREFIX_PATH=/Users/sani/Qt5.2.1/5.2.1/clang_64/lib/cmake/ ..
+ 
+ BETTER: python version is good 
+ --   Python:
+ --     Interpreter:                 /opt/local/bin/python (ver 2.7.6)
+ --     Libraries:                   NO
+ --     numpy:                       NO (Python wrappers can not be generated)
+ --     packages path:               /opt/local/lib/python2.7/site-packages
+ 
+ PROBLEM: python libraries and numpy are missing!
+ 
+ 
+ execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils.sysconfig import *; print get_python_lib()"
+ 
+ 
+ PROBLEM: 
+ ImportError: dlopen(/Library/Python/2.7/site-packages/numpy-1.9.0.dev_0f7dffa-py2.7-macosx-10.9-intel.egg/numpy/fft/fftpack_lite.so, 2): Symbol not found: ___sincos_stret
+   Referenced from: /Library/Python/2.7/site-packages/numpy-1.9.0.dev_0f7dffa-py2.7-macosx-10.9-intel.egg/numpy/fft/fftpack_lite.so
+   Expected in: /usr/lib/libSystem.B.dylib
+  in /Library/Python/2.7/site-packages/numpy-1.9.0.dev_0f7dffa-py2.7-macosx-10.9-intel.egg/numpy/fft/fftpack_lite.sols 
+  
+ IDEA: Python installed by macports is looking in the wrong place for its library!
+ TRY: Kill all python everywhere:
+ mac port uninstall --follow-dependents python27
+ rm -rf all python in
+ /Library
+ /usr/lib
+ /usr/bin
+ /usr/local/lib
+ /usr/local/bin
+
+
+ 
+ 

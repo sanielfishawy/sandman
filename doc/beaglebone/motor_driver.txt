@@ -1,3 +1,6 @@
 - Create device tree overlay.
 - Pinout is on google drive 
 - pin.coffee
+
+c++ nanosleep
+http://stackoverflow.com/questions/3072912/boostthis-threadsleep-vs-nanosleep

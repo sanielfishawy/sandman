@@ -15,8 +15,12 @@ class window.Vehicle
     @sequencer = new Sequencer
     @add_shape()
     @add_sensors()
-    @vehicle_motion_handler = new VehicleMotionHandler sequencer: @sequencer, vehicle: @
-    @smart_move_sequencer = new SmartMoveSequencer sequencer: @sequencer, vehicle: @, vmh: @vehicle_motion_handler
+    @vmq = new VehicleMotionQueue
+   
+    # @vmh = new KVehicleMotionHandler vmq: @vmq, sequencer: @sequencer, vehicle: @
+    @vmh = new RVehicleMotionHandler vmq: @vmq; @sequencer.stop();
+    
+    @smart_move_sequencer = new SmartMoveSequencer sequencer: @sequencer, vehicle: @, vmq: @vmq
     @delegate_methods()
     @s_start()
       
@@ -55,15 +59,16 @@ class window.Vehicle
     @s_start = @sequencer.start
     @s_stop = @sequencer.stop
     
-    @move = @vehicle_motion_handler.move
-    @rotate = @vehicle_motion_handler.rotate
-    @rotate_to = @vehicle_motion_handler.rotate_to
-    @revolve = @vehicle_motion_handler.revolve
-    @rot = @vehicle_motion_handler.rotate
-    @kill_move = @vehicle_motion_handler.kill_current_move
-    @kill_all_moves = @vehicle_motion_handler.kill_all_moves
-    @current_position = @vehicle_motion_handler.current_position
-    @current_rotation = @vehicle_motion_handler.current_rotation
+    @move = @vmq.move
+    @rotate = @vmq.rotate
+    @stop = @vmh.stop
+    @rotate_to = @vmh.rotate_to
+    @revolve = @vmh.revolve
+    @rot = @vmq.rotate
+    @kill_move = @vmq.kill_current_move
+    @kill_all_moves = @vmq.kill_all_moves
+    @current_position = @vmh.current_position
+    @current_rotation = @vmh.current_rotation
     
   go_to_edge: => @smart_move_sequencer.add_smart_move("GoToEdge")
   put_right_sensor_out: => @smart_move_sequencer.add_smart_move("PutRightSensorOut")
@@ -103,4 +108,3 @@ class window.VehicleBody
     }
     @shape.add @arrow.shape
 
-    

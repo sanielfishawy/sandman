@@ -18,7 +18,7 @@ class window.Runner
     main_stage.zoom(1)
     
     window.algo = new Algorithm(sandy)
-    algo.move_forward()
+    # algo.move_forward()
     
     # @line_v()
     

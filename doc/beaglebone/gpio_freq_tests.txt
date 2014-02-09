@@ -1,0 +1,12 @@
+QUESTION: How fast can I oscillate an output in software using C++?
+TEST: 
+  - Write a c program:
+    - Loop through toggling a pin as fast as possible with
+  RESULT: Shortest period using fwrite = 8uS => 125Khz
+  
+  
+  
+Stepper motors
+http://www.ni.com/pdf/products/us/cat_steppersandencoders.pdf
+TI paper: http://www.ti.com/lit/an/snva029b/snva029b.pdf
+http://users.ece.utexas.edu/~valvano/Datasheets/StepperSelection.pdf

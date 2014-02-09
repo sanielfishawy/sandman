@@ -2,13 +2,7 @@
 var execute, seq_n, sequence,
   _this = this;
 
-global.rw = require("./rw");
-
-rw.set_emulated(false);
-
-global.Dsc = require("./stepper");
-
-global.c = Dsc.create();
+global.Dsc = require("./stepper").create();
 
 c.set_step_resolution(2, 4);
 
@@ -47,5 +41,7 @@ execute = function() {
     return c.move(step.dir, step.n, execute);
   }
 };
+
+execute();
 
 console.log("done");

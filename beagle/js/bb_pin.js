@@ -5,45 +5,70 @@ var Pin, create,
 
 Pin = (function() {
   function Pin(direction, gpio_num) {
+    this.run_cmd = __bind(this.run_cmd, this);
     this.get_val = __bind(this.get_val, this);
     this.set_val = __bind(this.set_val, this);
+    this.open_value_files = __bind(this.open_value_files, this);
     this.set_direction = __bind(this.set_direction, this);
     this["export"] = __bind(this["export"], this);
     this.init_pin = __bind(this.init_pin, this);
+    this.config = require("./config");
+    this.sh = require("execSync");
+    this.fs = require("fs");
     if (!(typeof direction === "string" && typeof gpio_num === "number")) {
       throw "Pin constructor requires (direction, gpio_num)";
     }
     this.direction = direction;
     this.gpio_num = gpio_num;
-    this.sh = require("/usr/lib/node_modules/execSync");
-    this.fs = require("fs");
     this.pin_path = "/sys/class/gpio/gpio" + this.gpio_num;
     this.init_pin();
   }
 
   Pin.prototype.init_pin = function() {
     this["export"]();
-    return this.set_direction();
+    this.set_direction();
+    return this.open_value_files();
   };
 
   Pin.prototype["export"] = function(callback) {
     if (!this.fs.existsSync("/sys/class/gpio/gpio" + this.gpio_num)) {
-      return this.sh.run("echo " + this.gpio_num + " > /sys/class/gpio/export");
+      return this.run_cmd("echo " + this.gpio_num + " > /sys/class/gpio/export");
     }
   };
 
   Pin.prototype.set_direction = function(d) {
     d || (d = this.direction);
-    return this.sh.run("echo " + d + " > " + this.pin_path + "/direction");
+    return this.run_cmd("echo " + d + " > " + this.pin_path + "/direction");
+  };
+
+  Pin.prototype.open_value_files = function() {
+    var path;
+    if (this.config.emulated) {
+      return;
+    }
+    path = "" + this.pin_path + "/value";
+    this.val_w = this.fs.openSync(path, "w");
+    return this.val_r = this.fs.openSync(path, "r");
   };
 
   Pin.prototype.set_val = function(v) {
-    var cmd;
-    cmd = "echo " + v + " > " + this.pin_path + "/value";
-    return this.sh.run(cmd);
+    var path, write_buffer;
+    if (this.config.emulated) {
+      return;
+    }
+    v = v.toString();
+    write_buffer = new Buffer(v);
+    path = "" + this.pin_path + "/value";
+    return this.fs.writeSync(this.val_w, write_buffer, 0, write_buffer.length, null);
   };
 
   Pin.prototype.get_val = function() {};
+
+  Pin.prototype.run_cmd = function(cmd) {
+    if (!this.config.emulated) {
+      return this.sh.run(cmd);
+    }
+  };
 
   return Pin;
 

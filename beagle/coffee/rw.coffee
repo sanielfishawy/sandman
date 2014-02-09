@@ -1,11 +1,11 @@
 fs = require("fs")
-
-emulated = false
-set_emulated = (val) -> emulated = val
+config = require("./config")
   
 sync_write = (path, text) -> 
   console.log "rw.write: writing - path: #{path} | text:#{text}"
-  return if emulated
+  if config.emulated
+    console.log "RW.sync_write: Not writing becuase Config.emulated = true"
+    return
   
   try
     write_buffer = new Buffer(text)
@@ -20,5 +20,4 @@ sync_write = (path, text) ->
   
 module.exports = {
   sync_write: sync_write
-  set_emulated: set_emulated
 }

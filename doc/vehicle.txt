@@ -7,3 +7,15 @@ Vehicle parts
     - Square
   - Sensors
   - Motors
+  
+
+Refactor Vehicle Motion Handler
+-------------------------------
+  x Copy motion.js.coffee
+  x Factor out queue methods in to vehicle motion queue.
+  x Copy Vehicle
+  x Adjust to work with the new factored code.
+  x Test
+  - Consolidate the code base
+  - Add the RvehicleMotionHandler
+  

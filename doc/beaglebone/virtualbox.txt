@@ -1,0 +1,14 @@
+- Install virtualbox
+- Download 32 bit image from ubuntu
+- Create  a machine
+- Install guest additions
+  - Prep machine
+    - https://forums.virtualbox.org/viewtopic.php?t=15679
+  - Download guest additions iso
+    - http://download.virtualbox.org/virtualbox/4.3.6/
+  - Mount it on the cd of the virtual machine
+  - run autorun.sh
+  
+Password for sani: Statorma1
+
+

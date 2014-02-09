@@ -9,3 +9,8 @@
 INTERESTING STUFF
   clearRect
   getImageData
+  
+  
+Use Websocket in browser and npm socketio to communicate back and forth from bone. 
+  - Check performance.
+  

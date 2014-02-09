@@ -1,3 +1,28 @@
+FRESH BEAGLE
+------------
+ - Set up ntp clock
+   - http://derekmolloy.ie/automatically-setting-the-beaglebone-black-time-using-ntp/
+   - timedatectl
+ - Add python compiler <required to install execSync>
+   - opkg update
+   - opkg install python-compiler
+ - Install python-misc <required to install execSync>
+   - opkg update
+   - opkg install python-misc
+ - Get latest version of gyp
+   - npm explore npm -g -- npm install node-gyp@latest
+ - Install node execSync
+   - npm install -g execSync
+ - Install node-inspector
+   - npm install -g node-inspector
+ - Install device tree.
+   - Copy boneDeviceTree/ to beagle
+   - build stepper overlay
+   - Copy the dtbo file to /lib/firmware
+   
+
+SSH
+---
 ssh over usb client.
   Following the instructions using:
      http://learn.adafruit.com/ssh-to-beaglebone-black-over-usb/installing-drivers-mac
@@ -46,6 +71,9 @@ s
 - Connman
    - systemctl status connman.service
    - systemctl stop connman.service
+   -  /var/lib/connman/wifi.config
+   - /usr/lib/connman/test/test-connman services
+   - /var/lib/connman/settings
 
 - systemd
   - systemctl --system daemon-reload
@@ -60,6 +88,8 @@ s
 
 - Using Atheros
   - https://groups.google.com/forum/#!topic/beagleboard/9KCIs7yqsa8
+  - http://wireless.kernel.org/en/developers
+  - Linksys N900 - http://geekniggle.blogspot.com/2012/07/cisco-linksys-ae3000-wifi-usb-dongle.html
 
 - ifup, ifdown, ifquery
 
@@ -75,7 +105,8 @@ s
 
 - runlevel
   - init 3
-
+- Key conflict
+  - /Users/sani/.ssh/known_hosts
 
 GPIO
 ----
@@ -91,3 +122,16 @@ Device tree overlays allow you to update the device tree at runtime without havi
   - cd /sys/class/gpio
   - echo pin# > export e.g. echo 60 > export
 
+CROSS COMPILING C++
+-------------------
+http://www.michaelhleonard.com/cross-compile-for-beaglebone-black/
+
+
+BOOKS
+-----
+C Programming Language (2nd Edition)
+Brian W. Kernighan , Dennis M. Ritchie
+
+Modern Operating Systems Andrew Tanenbaum
+
+The design of the unix OS Maurice Bach
