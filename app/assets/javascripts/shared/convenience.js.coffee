@@ -75,6 +75,7 @@ window.set_transition = (elem, params) ->  elem.css(property, params) for proper
 # =========
 class window.Debug
   @log: (r) -> console.log "********** #{r}"
+  @callback: (params) => console.log params
 
 # ===============
 # = URL Helpers =

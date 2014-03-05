@@ -1,0 +1,102 @@
+PROBLEM : SSH not working on 192.168.7.2 but can ping it. SSH working on 192.168.1.125.
+
+  - Dropbear seems to have these services associated with it in /lib/systemd/system
+    - lrwxrwxrwx  1 root  root      9 Feb 10 17:49 dropbear.service -> /dev/null
+    -rw-r--r--  1 root  root    131 Jul  3  2013 dropbear.socket
+    -rw-r--r--  1 root  root    276 Jul  3  2013 dropbear@.service
+    -rw-r--r--  1 root  root    243 Jul  3  2013 dropbearkey.service
+    
+  - systemctl status dropbearkey.service => inactive
+    - this is correct as it is only started if there is no file /etc/dropbear/dropbear_rsa_host_key
+  - systemctl status dropbear.socket => active ok
+  - Also the following services appear
+  
+  dropbear@0-192.168.7.2:22-192.168.7.1:49176.service         loaded active running   SSH Per-Connection Server
+  dropbear@1-192.168.1.125:22-192.168.1.82:49177.service      loaded active running   SSH Per-Connection Server
+  dropbear@2-192.168.7.2:22-192.168.7.1:49178.service         loaded active running   SSH Per-Connection Server
+  dropbear@3-192.168.7.2:22-192.168.7.1:49428.service         loaded active running   SSH Per-Connection Server
+  dropbear@4-192.168.7.2:22-192.168.7.1:49728.service         loaded active running   SSH Per-Connection Server
+  
+  
+TRY: restart beagle with just ethernet plugged in. See what dropbear services appear when sshing into 125.
+RESULT: I just get the one service:
+dropbear@0-192.168.1.125:22-192.168.1.82:49777.service      loaded active running   SSH Per-Connection Server
+
+TRY: SSHing again on 125 from a different terminal: 
+I get one service for each connection:
+dropbear@0-192.168.1.125:22-192.168.1.82:49777.service      loaded active running   SSH Per-Connection Server
+dropbear@1-192.168.1.125:22-192.168.1.82:49778.service      loaded active running   SSH Per-Connection Server
+
+
+TRY: Plug in the usb. 
+ifconfig: shows usb0 up.
+systemctl shows same 2 as above
+Now try to ssh 192.168.7.2
+Now I get:
+dropbear@0-192.168.1.125:22-192.168.1.82:49777.service      loaded active running   SSH Per-Connection Server
+dropbear@1-192.168.1.125:22-192.168.1.82:49778.service      loaded active running   SSH Per-Connection Server
+dropbear@2-192.168.7.2:22-192.168.7.1:49789.service         loaded active running   SSH Per-Connection Server
+
+CONCLUSION: It appears that the ssh server on the beagle is starting up properly
+and I have 3 dropbears running:
+root       442     1  0 20:43 ?        00:00:01 /usr/sbin/dropbear -i -r /etc/dropbear/dropbear_rsa_host_key -p 22
+root       518     1  0 20:45 ?        00:00:00 /usr/sbin/dropbear -i -r /etc/dropbear/dropbear_rsa_host_key -p 22
+root       526     1  0 20:48 ?        00:00:00 /usr/sbin/dropbear -i -r /etc/dropbear/dropbear_rsa_host_key -p 22
+
+
+QUESTION where is it failing?
+TRY: 
+  - From pc: nc 192.168.7.2 22 => no output
+  - From pc: nc 192.168.1.125 22 => SSH-2.0-dropbear_2012.55
+  - From pc: ssh -v 192.168.7.2
+      OpenSSH_5.9p1, OpenSSL 0.9.8y 5 Feb 2013
+      debug1: Reading configuration data /etc/ssh_config
+      debug1: /etc/ssh_config line 20: Applying options for *
+      debug1: Connecting to 192.168.7.2 [192.168.7.2] port 22.
+      debug1: Connection established.
+      debug1: identity file /Users/sani/.ssh/id_rsa type 1
+      debug1: identity file /Users/sani/.ssh/id_rsa-cert type -1
+      debug1: identity file /Users/sani/.ssh/id_dsa type -1
+      debug1: identity file /Users/sani/.ssh/id_dsa-cert type -1
+
+  - From pc: ssh -v 192.168.1.125
+      OpenSSH_5.9p1, OpenSSL 0.9.8y 5 Feb 2013
+      debug1: Reading configuration data /etc/ssh_config
+      debug1: /etc/ssh_config line 20: Applying options for *
+      debug1: Connecting to 192.168.1.125 [192.168.1.125] port 22.
+      debug1: Connection established.
+      debug1: identity file /Users/sani/.ssh/id_rsa type 1
+      debug1: identity file /Users/sani/.ssh/id_rsa-cert type -1
+      debug1: identity file /Users/sani/.ssh/id_dsa type -1
+      debug1: identity file /Users/sani/.ssh/id_dsa-cert type -1
+      debug1: Remote protocol version 2.0, remote software version dropbear_2012.55
+      debug1: no match: dropbear_2012.55
+      debug1: Enabling compatibility mode for protocol 2.0
+      debug1: Local version string SSH-2.0-OpenSSH_5.9
+      debug1: SSH2_MSG_KEXINIT sent
+      ... etc
+      
+CONCLUSION: The pc isnt receiving anything from the beagle when it connects on socket  with port 22.
+
+TRY: What do the syslog files on the beagle.
+  - dmesg => [ 3368.254800] systemd[1]: avahi-daemon.service start request repeated too quickly, refusing to start.
+  - journalctl => 
+      Feb 10 21:48:09 beaglebone avahi-daemon[4938]: Found user 'avahi' (UID 998) and group 'avahi' (GID 996).
+      Feb 10 21:48:09 beaglebone avahi-daemon[4938]: Successfully dropped root privileges.
+      Feb 10 21:48:09 beaglebone avahi-daemon[4938]: write(): No space left on device
+      
+CONCLUSION: No space left on device!!!
+  - df -h => 
+    Filesystem      Size  Used Avail Use% Mounted on
+    rootfs          1.7G  1.7G     0 100% /
+    /dev/root       1.7G  1.7G     0 100% /
+    devtmpfs        250M     0  250M   0% /dev
+    tmpfs           250M     0  250M   0% /dev/shm
+    tmpfs           250M   25M  225M  10% /run
+    tmpfs           250M     0  250M   0% /sys/fs/cgroup
+    tmpfs           250M  4.0K  250M   1% /tmp
+  
+TRY: Remove the big directories I added when doing opencv stuff. and reboot.
+
+IT WORKS!!!!
+  

@@ -1,5 +1,7 @@
 class Api
   
+  @client_socket = require("./socket_io").client_socket
+  
   @name_spaces: {
     Led:  require("./bb_led")
     Dsc: require("./stepper").create()

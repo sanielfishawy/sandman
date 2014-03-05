@@ -4,6 +4,8 @@ var Api;
 Api = (function() {
   function Api() {}
 
+  Api.client_socket = require("./socket_io").client_socket;
+
   Api.name_spaces = {
     Led: require("./bb_led"),
     Dsc: require("./stepper").create()

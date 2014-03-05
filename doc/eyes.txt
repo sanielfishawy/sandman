@@ -1,0 +1,101 @@
+Architecture
+------------
+
+  - Browser on pc calls node api to snap and calculate
+  - Node server on bb calls python
+  - Python returns the calculation and filename for the image
+  - Node server calls back browser with calculation and image
+  - Browser redirects robot and shows image.
+  
+Video on linu 
+--------------
+  v4l2-ctl
+
+Todo
+----
+  x Back up beagle bone flash.
+  - Get opencv with python on angstrom:
+  - opkg install python-opencv
+  
+
+TRY: 
+  import cv2
+  import numpy as np
+  cap = cv2.VideoCapture(0)
+  
+PROBLEM: I get:
+  VIDIOC_QUERYMENU: Invalid argument
+  VIDIOC_QUERYMENU: Invalid argument
+  VIDIOC_QUERYMENU: Invalid argument
+  VIDIOC_QUERYMENU: Invalid argument
+  VIDIOC_QUERYMENU: Invalid argument
+  VIDIOC_QUERYMENU: Invalid argument
+  VIDIOC_QUERYMENU: Invalid argument
+  
+  ret, frame = cap.read()
+  select timeout
+  gives ret=true, but a black frame.
+
+TRY: Following derek molloys video on connecting video
+  - git his code
+  - compiled
+  - capture which tries to capture video fails => select timeout
+  - but grabber works.
+  
+TRY: Figure out what grabber is doing and see if there is a command in python to do the same.
+
+People having the same problem...
+https://groups.google.com/forum/#!topic/beagleboard/G5Xs2JuwD_4
+
+
+TRY: Just use grabber.
+  - TEST - Which of the cameras does it work with?
+    - Camera A - Yes
+    - Camera B - Yes
+    - Camera C - Yes
+  160
+  - Capture only 1 image at 640x480
+  
+PROBLEM
+  - Camera A when I try to set the frame size using v4l2 I get random results
+TRY camera b and c
+  - Camera b - More problems:
+    - Seems to ignore or do random things with settings of width and height.
+    - When I was able to capture an image it was not recognizable by convert
+    - Hangs waiting for the camera to fill the iobuffer.
+    
+TRY: Lets debug with camera A:
+  - grab 2 stills with the following frame sizes:  
+640x480 => Hangs on clearing buffer
+160x120 => Works
+176x144 => Works
+320x176 => Works
+320x240 => Works
+432x240 => Works
+352x288 => Works
+544x288 => Works
+640x360 =>  Works
+752x416 => Hangs on clearing buffer
+800x448 => Hangs on clearing buffer
+864x480 => Works
+960x544 => Works
+1024x576 => Works
+800x600 => Works
+1184x656 => Works
+960x720 => Works
+1280x720 => Works
+1392x768 => Works
+1504x832 => Works
+1600x896 => Works
+1280x960 => Works
+1712x960 => Works
+1792x1008 => Works
+1920x1080 => Works
+1600x1200 => Works
+2048x1536 => Works
+2592x1944 => Hangs on clearing buffer.
+
+TODO:
+ - Create a py file that captures a couple frames prints out a result.
+
+    

@@ -1,7 +1,10 @@
+from time import clock as clock
+tstart =  clock()
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt
-import matplotlib.cm as cm
+
+# from matplotlib import pyplot as plt
+# import matplotlib.cm as cm
 
 # ===========
 # = Globals =
@@ -38,12 +41,22 @@ for i,name in list(enumerate(VIDEO_PARAM_NAMES)): VIDEO_PARAMS[name] = i
 # = Methods =
 # ===========
 def initialize():
-  set_res(640,480)
+  set_res(544,288)
   
 def snap():
   # capture an image
   ret, frame = cap.read()
   return frame
+
+save_n = 0
+def snap_and_save():
+  for i in range(1,10):
+    snap()
+  global save_n
+  print save_n
+  f = snap()
+  cv2.imwrite("../images/pic" + str(save_n) + ".jpg", f)
+  save_n += 1
   
 def set_res(w,h):
   cap.set(VIDEO_PARAMS["CV_CAP_PROP_FRAME_WIDTH"], w)
@@ -94,13 +107,12 @@ def canny2():
     raw_input("b")
     cv2.destroyAllWindows()
  
-  
 def display(imgs):
   # display imgs
   for i,img in tuple(enumerate(imgs)):
     cmap = cm.summer if i == 0 else cm.gray
-    plt.subplot(1, len(imgs), i).imshow(img, cmap=cmap)
-  plt.show()
+  #   plt.subplot(1, len(imgs), i).imshow(img, cmap=cmap)
+  # plt.show()
 
 def spd():
   # cv2.destroyAllWindows()
@@ -109,7 +121,14 @@ def spd():
   imgs = process(img)
   display(imgs)
 
+def sw():
+  img = snap()
+  
+def hello(params):
+  return {"params_i_got": params, "my_response": "Eyes on the world"}
+  
 initialize()
+
 
   
   

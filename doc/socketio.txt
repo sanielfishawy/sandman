@@ -1,8 +1,17 @@
+great article on ipc
+
 npm install -g socket.io
 
 Architecture
  - Node on beaglebone has socket.io loaded.
- - Runs as a http server and socket server on port 4000
+   - Node on beagle bone runs as a http server and socket server on port 4000
+   - Http server serves javascript for socket.io client on browser and eventually will server html and js for the entire browser client.
+   - Socket.io is used to communicate commands from browser to node on beagle through namespace "Api"
+ 
+ - Node on beagle also runs a 
+ 
+ - Python eyes on beagle runs as a socket server
+ - Node on beagle runs as a socket client
  
 
 Todo
@@ -13,3 +22,11 @@ Todo
  x Make socketio call api commands
  x Add callbacks
  
+
+Socket comm between node and python on beagle
+---------------------------------------------
+  - Use node net rather than node socket.io for this in order to create a plain vanilla socket. 
+  
+  TEST: 
+  x create a net socket server on node
+  - create a socket server python.

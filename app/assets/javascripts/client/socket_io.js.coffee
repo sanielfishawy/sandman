@@ -1,3 +1,4 @@
+# Client socket to talk to node socket server on beagleboard.
 class window.SocketIO
   @init: => 
     @callbacks = {}
@@ -26,4 +27,3 @@ class window.SocketIO
     id = (new Date).getTime()
     @callbacks[id] = callback if callback
     @socket.emit("Api", {name_space: name_space, method: method, params: params, callback_id: id})
-    

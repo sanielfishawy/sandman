@@ -20,6 +20,13 @@ FRESH BEAGLE
    - build stepper overlay
    - Copy the dtbo file to /lib/firmware
    
+===== Backup 2/10/2014 - /home/Sani/dev/sandman/beagle_images/BeagleBoneBlack-eMMC-image-2-10-2014.img
+
+ - Install addtional python packages:
+ opkg install python-opencv
+ 
+ opkg install python-pprint python-io python-shell python-misc  python-lang  python-stringold  python-codecs  python-crypt python-threading python-pydoc  python-debugger  python-textutils python-pickle python-subprocess python-pkgutil python-dev python-compile python-json python-resource python-pty
+ 
 
 SSH
 ---
